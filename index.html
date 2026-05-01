@@ -14,6 +14,7 @@
       --linen: #EDE8E1;
       --linen-dark: #C8C2B8;
       --linen-mid: #D8D2C8;
+      --linen-deep: #B8B0A4;
       --ink: #1A1814;
       --ink-soft: #3A3530;
       --ink-muted: #6B6560;
@@ -21,7 +22,6 @@
       --ivory-bg: #DDE2E8;
       --card-warm: #E8E0D4;
       --card-warmer: #F2EDE4;
-      --obsidian: #1C2432;
     }
 
     * {
@@ -140,12 +140,12 @@
 
     .hero-subheadline {
       font-family: 'Jost', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       font-weight: 300;
       color: var(--ink-muted);
       line-height: 1.7;
       margin-bottom: 56px;
-      max-width: 340px;
+      max-width: 360px;
     }
 
     .hero-rule {
@@ -181,7 +181,7 @@
 
     /* ── CARD REVEAL SECTION ── */
     .reveal-section {
-      background: var(--obsidian);
+      background: var(--linen-deep);
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
@@ -190,7 +190,7 @@
 
     .reveal-content {
       padding: 100px 80px;
-      color: var(--linen);
+      color: var(--ink);
     }
 
     .reveal-eyebrow {
@@ -198,7 +198,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: rgba(237, 232, 225, 0.4);
+      color: var(--ink-muted);
       margin-bottom: 32px;
     }
 
@@ -208,15 +208,15 @@
       font-weight: 300;
       font-size: clamp(2rem, 3.5vw, 3rem);
       line-height: 1.2;
-      color: var(--linen);
+      color: var(--ink);
       margin-bottom: 32px;
     }
 
     .reveal-body {
       font-family: 'Jost', sans-serif;
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 300;
-      color: rgba(237, 232, 225, 0.55);
+      color: var(--ink-soft);
       line-height: 1.8;
       max-width: 380px;
       margin-bottom: 56px;
@@ -233,14 +233,14 @@
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(237, 232, 225, 0.4);
-      border: 1px solid rgba(237, 232, 225, 0.15);
+      color: var(--ink-muted);
+      border: 1px solid rgba(26, 24, 20, 0.2);
       padding: 6px 14px;
     }
 
     .chip.active {
-      color: var(--linen);
-      border-color: rgba(237, 232, 225, 0.4);
+      color: var(--ink);
+      border-color: var(--ink-soft);
     }
 
     .reveal-card-zone {
@@ -473,7 +473,7 @@
 
     .step-body {
       font-family: 'Jost', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       font-weight: 300;
       color: var(--ink-muted);
       line-height: 1.7;
@@ -481,7 +481,7 @@
 
     /* ── FINAL CTA ── */
     .cta-section {
-      background: var(--ink);
+      background: var(--linen-deep);
       padding: 140px 80px;
       text-align: center;
     }
@@ -491,7 +491,7 @@
       font-style: italic;
       font-weight: 300;
       font-size: clamp(2.4rem, 5vw, 4rem);
-      color: var(--linen);
+      color: var(--ink);
       margin-bottom: 16px;
       line-height: 1.15;
     }
@@ -500,7 +500,7 @@
       font-family: 'Jost', sans-serif;
       font-size: 0.8rem;
       font-weight: 300;
-      color: rgba(237, 232, 225, 0.45);
+      color: var(--ink-muted);
       margin-bottom: 56px;
       letter-spacing: 0.05em;
     }
@@ -512,8 +512,7 @@
 
     .cta-btn img {
       height: 52px;
-      opacity: 0.9;
-      filter: brightness(0) invert(1);
+      opacity: 0.85;
       transition: opacity 0.2s;
     }
 
@@ -523,8 +522,8 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--ink);
-      border-top: 1px solid rgba(237,232,225,0.08);
+      background: var(--linen-deep);
+      border-top: 1px solid rgba(26,24,20,0.12);
       padding: 32px 80px;
       display: flex;
       justify-content: space-between;
@@ -535,7 +534,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 1rem;
-      color: rgba(237, 232, 225, 0.4);
+      color: var(--ink-muted);
     }
 
     .footer-links {
@@ -548,13 +547,13 @@
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(237, 232, 225, 0.3);
+      color: var(--ink-muted);
       text-decoration: none;
       transition: color 0.2s;
     }
 
     .footer-link:hover {
-      color: rgba(237, 232, 225, 0.7);
+      color: var(--ink);
     }
 
     /* ── MOBILE ── */
@@ -709,9 +708,9 @@
       <p class="reveal-body">One acoustic analysis. One historical figure. Twelve attributes that map who your cat actually is — not who you assumed they were.</p>
       <div class="attribute-chips">
         <div class="chip active">Figure</div>
-        <div class="chip active">Cocktail</div>
-        <div class="chip active">Novel</div>
-        <div class="chip active">Philosopher</div>
+        <div class="chip">Cocktail</div>
+        <div class="chip">Novel</div>
+        <div class="chip">Philosopher</div>
         <div class="chip">Dog Breed</div>
         <div class="chip">City</div>
         <div class="chip">Decade</div>
@@ -728,7 +727,7 @@
   <section class="attributes-section">
     <div class="attributes-header">
       <h2 class="attributes-headline">A complete dossier. Twelve dimensions.</h2>
-      <div class="attributes-count">128 possible figures</div>
+      <div class="attributes-count">118 possible figures</div>
     </div>
     <div class="attributes-grid">
       <div class="attribute-item">
@@ -775,7 +774,7 @@
         <div class="step-number">i.</div>
         <div class="step-content">
           <div class="step-title">Name your cat. Take a photo.</div>
-          <div class="step-body">Remove.bg handles the rest — your cat, cut clean from the world, ready for the dossier.</div>
+          <div class="step-body">Your cat, cut clean from the world, ready for the dossier.</div>
         </div>
       </div>
       <div class="how-step">
@@ -789,14 +788,14 @@
         <div class="step-number">iii.</div>
         <div class="step-content">
           <div class="step-title">The figure is revealed.</div>
-          <div class="step-body">128 historical figures. One match. Confirmed, identified, emerging, or suspected. Your cat was always someone.</div>
+          <div class="step-body">118 historical figures. One match. Confirmed, identified, emerging, or suspected. Your cat was always someone.</div>
         </div>
       </div>
       <div class="how-step">
         <div class="step-number">iv.</div>
         <div class="step-content">
           <div class="step-title">Build the full dossier.</div>
-          <div class="step-body">Unlock twelve attributes. Share the cards. The Kafka card is always free.</div>
+          <div class="step-body">Unlock twelve attributes. Share the cards.</div>
         </div>
       </div>
     </div>
