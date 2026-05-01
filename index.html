@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>meow-me — your cat has a personality</title>
+  <meta name="description" content="You've lived together this whole time. You still don't know who they are. meow-me analyzes your cat's voice and reveals who they really are." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --linen: #EDE8E1;
+      --linen-dark: #C8C2B8;
+      --linen-mid: #D8D2C8;
+      --ink: #1A1814;
+      --ink-soft: #3A3530;
+      --ink-muted: #6B6560;
+      --amber: #B8860B;
+      --ivory-bg: #DDE2E8;
+      --card-warm: #E8E0D4;
+      --card-warmer: #F2EDE4;
+      --obsidian: #1C2432;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--linen);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(237, 232, 225, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(26, 24, 20, 0.08);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-cta {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 61px;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.88;
+      filter: sepia(15%);
+    }
+
+    .hero-image-label {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 225, 0.5);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero-subheadline {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 56px;
+      max-width: 340px;
+    }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--linen-dark);
+      margin-bottom: 56px;
+    }
+
+    .app-store-btn {
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .app-store-btn img {
+      height: 48px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .app-store-btn:hover img {
+      opacity: 1;
+    }
+
+    .app-store-coming {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 16px;
+    }
+
+    /* ── CARD REVEAL SECTION ── */
+    .reveal-section {
+      background: var(--obsidian);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .reveal-content {
+      padding: 100px 80px;
+      color: var(--linen);
+    }
+
+    .reveal-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 225, 0.4);
+      margin-bottom: 32px;
+    }
+
+    .reveal-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: var(--linen);
+      margin-bottom: 32px;
+    }
+
+    .reveal-body {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(237, 232, 225, 0.55);
+      line-height: 1.8;
+      max-width: 380px;
+      margin-bottom: 56px;
+    }
+
+    .attribute-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 225, 0.4);
+      border: 1px solid rgba(237, 232, 225, 0.15);
+      padding: 6px 14px;
+    }
+
+    .chip.active {
+      color: var(--linen);
+      border-color: rgba(237, 232, 225, 0.4);
+    }
+
+    .reveal-card-zone {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 60px;
+    }
+
+    /* The floating personality card */
+    .personality-card {
+      width: 280px;
+      background: var(--card-warm);
+      padding: 0;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .card-cat-zone {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      background: var(--card-warmer);
+    }
+
+    .card-cat-zone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: sepia(8%);
+    }
+
+    .card-rule {
+      width: 100%;
+      height: 1px;
+      background: rgba(26, 24, 20, 0.1);
+    }
+
+    .card-body {
+      padding: 20px 20px 16px;
+    }
+
+    .card-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card-modifier {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-top: 1px solid rgba(26, 24, 20, 0.08);
+    }
+
+    .card-pride {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .pride-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--amber);
+    }
+
+    .card-url {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.5rem;
+      color: var(--ink-muted);
+      opacity: 0.6;
+    }
+
+    /* ── ATTRIBUTES SECTION ── */
+    .attributes-section {
+      background: var(--linen);
+      padding: 120px 80px;
+    }
+
+    .attributes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 80px;
+      border-bottom: 1px solid var(--linen-dark);
+      padding-bottom: 32px;
+    }
+
+    .attributes-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--ink);
+      max-width: 480px;
+      line-height: 1.2;
+    }
+
+    .attributes-count {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .attributes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .attribute-item {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--linen-dark);
+    }
+
+    .attribute-item:nth-child(-n+4) {
+      border-top: 1px solid var(--linen-dark);
+    }
+
+    .attribute-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+
+    .attribute-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .attribute-free {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 6px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: var(--card-warmer);
+      padding: 120px 80px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .how-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding-top: 8px;
+    }
+
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .how-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 24px;
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(26,24,20,0.1);
+    }
+
+    .how-step:first-child {
+      border-top: 1px solid rgba(26,24,20,0.1);
+    }
+
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      padding-top: 4px;
+    }
+
+    .step-content {}
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .step-body {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-section {
+      background: var(--ink);
+      padding: 140px 80px;
+      text-align: center;
+    }
+
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--linen);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .cta-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(237, 232, 225, 0.45);
+      margin-bottom: 56px;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .cta-btn img {
+      height: 52px;
+      opacity: 0.9;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.2s;
+    }
+
+    .cta-btn:hover img {
+      opacity: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(237,232,225,0.08);
+      padding: 32px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(237, 232, 225, 0.4);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 225, 0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: rgba(237, 232, 225, 0.7);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-image {
+        height: 60vw;
+        min-height: 280px;
+      }
+
+      .hero-content {
+        padding: 48px 32px 64px;
+      }
+
+      .hero-headline {
+        font-size: 2.2rem;
+      }
+
+      .reveal-section {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .reveal-content {
+        padding: 64px 32px 40px;
+        order: 2;
+      }
+
+      .reveal-card-zone {
+        padding: 48px 32px 0;
+        order: 1;
+      }
+
+      .personality-card {
+        width: 240px;
+      }
+
+      .attributes-section {
+        padding: 80px 32px;
+      }
+
+      .attributes-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .attributes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+      }
+
+      .attribute-item:nth-child(-n+4) {
+        border-top: none;
+      }
+
+      .attribute-item:nth-child(-n+2) {
+        border-top: 1px solid var(--linen-dark);
+      }
+
+      .how-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 80px 32px;
+      }
+
+      .cta-section {
+        padding: 100px 32px;
+      }
+
+      footer {
+        padding: 24px 32px;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow { animation: fadeUp 0.8s ease forwards; }
+    .hero-headline { animation: fadeUp 0.8s 0.15s ease forwards; opacity: 0; }
+    .hero-subheadline { animation: fadeUp 0.8s 0.3s ease forwards; opacity: 0; }
+    .hero-rule { animation: fadeUp 0.8s 0.4s ease forwards; opacity: 0; }
+    .app-store-btn { animation: fadeUp 0.8s 0.5s ease forwards; opacity: 0; }
+    .app-store-coming { animation: fadeUp 0.8s 0.6s ease forwards; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">meow-me</a>
+    <a href="#how" class="nav-cta">How it works</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80" alt="Cat" />
+      <div class="hero-image-label">One sound. We listened.</div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">meow-me · iOS</div>
+      <h1 class="hero-headline">You've lived together this whole time.</h1>
+      <p class="hero-subheadline">You still don't know who they are. Record one moment. Find out.</p>
+      <div class="hero-rule"></div>
+      <a href="#" class="app-store-btn">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+      </a>
+      <div class="app-store-coming">Coming soon to iOS</div>
+    </div>
+  </section>
+
+  <!-- REVEAL SECTION -->
+  <section class="reveal-section">
+    <div class="reveal-card-zone">
+      <div class="personality-card">
+        <div class="card-cat-zone">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80" alt="Charlie" />
+        </div>
+        <div class="card-rule"></div>
+        <div class="card-body">
+          <div class="card-eyebrow">Figure I · Personality Portrait</div>
+          <div class="card-name">Franz Kafka</div>
+          <div class="card-modifier">the trial has begun. Charges unspecified.</div>
+        </div>
+        <div class="card-footer">
+          <div class="card-pride">
+            <div class="pride-dot"></div>
+            Ivory Pride
+          </div>
+          <div class="card-url">meow-me.ca</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-content">
+      <div class="reveal-eyebrow">The reveal</div>
+      <h2 class="reveal-headline">Your cat contains multitudes.</h2>
+      <p class="reveal-body">One acoustic analysis. One historical figure. Twelve attributes that map who your cat actually is — not who you assumed they were.</p>
+      <div class="attribute-chips">
+        <div class="chip active">Figure</div>
+        <div class="chip active">Cocktail</div>
+        <div class="chip active">Novel</div>
+        <div class="chip active">Philosopher</div>
+        <div class="chip">Dog Breed</div>
+        <div class="chip">City</div>
+        <div class="chip">Decade</div>
+        <div class="chip">Coffee</div>
+        <div class="chip">Star Sign</div>
+        <div class="chip">Cheese</div>
+        <div class="chip">Flower</div>
+        <div class="chip">Punctuation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTRIBUTES -->
+  <section class="attributes-section">
+    <div class="attributes-header">
+      <h2 class="attributes-headline">A complete dossier. Twelve dimensions.</h2>
+      <div class="attributes-count">128 possible figures</div>
+    </div>
+    <div class="attributes-grid">
+      <div class="attribute-item">
+        <div class="attribute-label">Figure</div>
+        <div class="attribute-value">Franz Kafka</div>
+        <div class="attribute-free">Included free</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Cocktail</div>
+        <div class="attribute-value">Old Fashioned</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Novel</div>
+        <div class="attribute-value">Moby-Dick</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Philosopher</div>
+        <div class="attribute-value">Søren Kierkegaard</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">City</div>
+        <div class="attribute-value">Venice</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Dog Breed</div>
+        <div class="attribute-value">Border Collie</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Decade</div>
+        <div class="attribute-value">The 1920s</div>
+      </div>
+      <div class="attribute-item">
+        <div class="attribute-label">Coffee</div>
+        <div class="attribute-value">Cortado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="how-label">How it works</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-number">i.</div>
+        <div class="step-content">
+          <div class="step-title">Name your cat. Take a photo.</div>
+          <div class="step-body">Remove.bg handles the rest — your cat, cut clean from the world, ready for the dossier.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-number">ii.</div>
+        <div class="step-content">
+          <div class="step-title">Record one moment.</div>
+          <div class="step-body">Ten seconds. Any vocalization. The analysis runs across five acoustic axes: authority, expressiveness, energy, stoicism, drama.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-number">iii.</div>
+        <div class="step-content">
+          <div class="step-title">The figure is revealed.</div>
+          <div class="step-body">128 historical figures. One match. Confirmed, identified, emerging, or suspected. Your cat was always someone.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-number">iv.</div>
+        <div class="step-content">
+          <div class="step-title">Build the full dossier.</div>
+          <div class="step-body">Unlock twelve attributes. Share the cards. The Kafka card is always free.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-headline">Find out who your cat is.</h2>
+    <p class="cta-sub">meow-me · iOS · Coming soon</p>
+    <a href="#" class="cta-btn">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">meow-me</div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Privacy</a>
+      <a href="#" class="footer-link">Terms</a>
+      <a href="mailto:hello@meow-me.ca" class="footer-link">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
