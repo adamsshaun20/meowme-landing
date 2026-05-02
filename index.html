@@ -653,6 +653,15 @@
     .app-store-btn { animation: fadeUp 0.8s 0.5s ease forwards; opacity: 0; }
     .app-store-coming { animation: fadeUp 0.8s 0.6s ease forwards; opacity: 0; }
   </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-14789045840"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-14789045840');
+  </script>
 </head>
 <body>
 
@@ -673,7 +682,7 @@
       <h1 class="hero-headline">You've lived together this whole time.</h1>
       <p class="hero-subheadline">You still don't know who they are. Record one moment. Find out.</p>
       <div class="hero-rule"></div>
-      <a href="#" class="app-store-btn">
+      <a href="#" class="app-store-btn" onclick="gtag('event', 'app_store_click', {'event_category': 'engagement', 'event_label': 'app_store_button'});">
         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
       </a>
       <div class="app-store-coming">Coming soon to iOS</div>
@@ -804,7 +813,7 @@
   <section class="cta-section">
     <h2 class="cta-headline">Find out who your cat is.</h2>
     <p class="cta-sub">meow-me · iOS · Coming soon</p>
-    <a href="#" class="cta-btn">
+    <a href="#" class="cta-btn" onclick="gtag('event', 'app_store_click', {'event_category': 'engagement', 'event_label': 'app_store_button'});">
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
     </a>
   </section>
