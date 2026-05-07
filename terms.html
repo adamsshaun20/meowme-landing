@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions — meow-me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --linen: #E8E0D4;
+      --page-bg: #F2EDE4;
+      --ink: #2A2520;
+      --ink-mid: #5C5248;
+      --ink-light: #8B7D74;
+      --rule: #C8BFB4;
+      --accent: #C4956A;
+    }
+
+    html {
+      background-color: var(--page-bg);
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background-color: var(--page-bg);
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    header .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    header .back {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+
+    header .back:hover {
+      color: var(--ink);
+    }
+
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .effective-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink-light);
+      margin-bottom: 48px;
+    }
+
+    .rule {
+      width: 40px;
+      height: 1px;
+      background-color: var(--rule);
+      margin-bottom: 48px;
+    }
+
+    .intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      margin-bottom: 56px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    p {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    ul li {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .contact-block {
+      background-color: var(--linen);
+      padding: 32px 36px;
+      margin-top: 56px;
+    }
+
+    .contact-block p {
+      margin-bottom: 8px;
+    }
+
+    .contact-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--ink-light);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 20px 24px;
+      }
+
+      main {
+        padding: 56px 24px 80px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      footer {
+        padding: 20px 24px;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meow-me.com" class="wordmark">meow-me</a>
+    <a href="https://meow-me.com" class="back">← Back</a>
+  </header>
+
+  <main>
+
+    <p class="eyebrow">Legal</p>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="effective-date">Effective date: May 2026</p>
+    <div class="rule"></div>
+
+    <p class="intro">By downloading or using meow-me, you agree to these terms. They are written to be read, not avoided.</p>
+
+    <section>
+      <h2>The App</h2>
+      <p>meow-me is an iOS application that analyses cat vocalisations and generates personality profiles matched to historical figures. It is made by Shaun Adams, operating as an independent developer.</p>
+      <p>meow-me is for entertainment purposes. The results are not a scientific personality assessment, veterinary opinion, or behavioural analysis. Your cat is not actually Napoleon Bonaparte. Probably.</p>
+    </section>
+
+    <section>
+      <h2>Purchases &amp; Tokens</h2>
+      <p>meow-me is free to download. The historical figure match is always free. Additional attributes are unlocked using tokens, purchased through the App Store.</p>
+      <ul>
+        <li>All purchases are processed by Apple and subject to Apple's payment terms.</li>
+        <li>Tokens are consumable. Once spent to unlock an attribute, they are not refundable.</li>
+        <li>Restore Purchases does not restore consumed tokens. It is provided as a courtesy for cases where a purchase did not credit correctly.</li>
+        <li>Prices may change. You will always see the current price before purchasing.</li>
+        <li>For refund requests, contact Apple directly or reach us at hello@meow-me.com.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Your Data</h2>
+      <p>meow-me collects the minimum necessary to function.</p>
+      <ul>
+        <li>Cat recordings are analysed on our servers to extract acoustic properties. Raw audio is not stored after analysis.</li>
+        <li>Cat photos are processed on-device. They are not uploaded to our servers.</li>
+        <li>An anonymous identifier is stored locally on your device to preserve your cat's dossier across sessions.</li>
+        <li>No account or sign-in is required. We do not collect your name, email, or any personally identifying information unless you contact us directly.</li>
+      </ul>
+      <p>For full details, see our <a href="https://www.meow-me.com/privacy.html">Privacy Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>The Matching System</h2>
+      <p>Figure matches are generated by meow-me's acoustic analysis system, which scores vocalisations across five axes and matches the result against a curated library of 128 historical figures.</p>
+      <ul>
+        <li>Results vary based on the recording. The same cat may receive different matches across sessions.</li>
+        <li>Historical figures are used in a fictional, humorous context. They are not affiliated with or endorsed by meow-me.</li>
+        <li>Descriptions of historical figures are original creative works. Any resemblance to official biographical material is incidental.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Intellectual Property</h2>
+      <p>All content within meow-me — including copy, card designs, attribute descriptions, and the matching system — is the original work of meow-me and protected by copyright.</p>
+      <p>You may share results using the in-app share feature. You may not reproduce, reverse-engineer, or redistribute app content without permission.</p>
+    </section>
+
+    <section>
+      <h2>Service &amp; Availability</h2>
+      <p>meow-me requires an internet connection to analyse recordings and retrieve results. We do not guarantee uninterrupted availability.</p>
+      <p>We reserve the right to update, modify, or discontinue features at any time. We will communicate significant changes where possible.</p>
+    </section>
+
+    <section>
+      <h2>Limitation of Liability</h2>
+      <p>meow-me is provided as-is. To the extent permitted by law, we are not liable for any indirect, incidental, or consequential damages arising from use of the app.</p>
+      <p>We are not responsible for any decisions made based on your cat's personality profile. Including dietary ones.</p>
+    </section>
+
+    <section>
+      <h2>Changes to These Terms</h2>
+      <p>We may update these terms from time to time. Continued use of meow-me after changes constitutes acceptance. The effective date at the top of this page reflects the most recent revision.</p>
+    </section>
+
+    <div class="contact-block">
+      <p class="eyebrow" style="margin-bottom: 12px;">Questions</p>
+      <p>If something here is unclear or you have a concern, write to us.</p>
+      <p><a href="mailto:hello@meow-me.com">hello@meow-me.com</a></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>meow-me · iOS · 2026</span>
+    <span><a href="https://www.meow-me.com/privacy.html">Privacy Policy</a></span>
+  </footer>
+
+</body>
+</html>
