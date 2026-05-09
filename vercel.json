@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/app",
+      "destination": "https://apps.apple.com/app/apple-store/id6765545583?pt=128847294&ct=general&mt=8",
+      "permanent": false
+    }
+  ]
+}
