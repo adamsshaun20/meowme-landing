@@ -180,8 +180,9 @@
       gap: 16px;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 8px 32px 32px;
+      padding: 8px 10vw 32px;
       scroll-snap-type: x mandatory;
+      scroll-padding-left: 10vw;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
@@ -191,7 +192,7 @@
     .card-strip-item {
       flex: 0 0 80vw;
       max-width: 300px;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
     }
 
     .card-strip-item img {
@@ -238,6 +239,9 @@
       font-size: clamp(1.4rem, 4vw, 2rem);
       color: var(--ink-soft);
     }
+
+    /* Desktop grid hidden on mobile by default */
+    .card-grid-desktop { display: none; }
 
     /* ─── REVEAL SECTION ─── */
     .reveal-section {
@@ -503,19 +507,57 @@
 
       .hero-rule { margin: 0 0 56px; }
 
-      /* Card strip: fixed-width items, centered row, no scroll needed */
+      /* Card strip: desktop switches to a custom grid layout.
+         Hide the mobile scroll container entirely and show
+         the desktop grid instead. */
       .card-strip-scroll {
-        justify-content: center;
-        overflow-x: visible;
-        padding: 8px 80px 32px;
-      }
-
-      .card-strip-item {
-        flex: 0 0 18%;
-        max-width: 220px;
+        display: none; /* hidden on desktop — replaced by .card-grid-desktop */
       }
 
       .card-strip-dots { display: none; }
+
+      /* Desktop card grid: hero + 2x2 */
+      .card-grid-desktop {
+        display: block;
+        padding: 0 80px 0;
+      }
+
+      /* Hero card — Mark Twain — centered, natural proportions */
+      .card-grid-hero {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 32px;
+      }
+
+      .card-grid-hero .card-grid-item {
+        width: 320px;
+      }
+
+      /* 2x2 grid */
+      .card-grid-four {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .card-grid-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .card-grid-caption {
+        font-family: 'Jost', sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-top: 12px;
+        opacity: 0.6;
+      }
 
       /* Reveal: constrained width */
       .reveal-section {
@@ -627,12 +669,42 @@
         <div class="card-strip-caption">Punctuation</div>
       </div>
     </div>
+    <!-- Mobile scroll dots -->
     <div class="card-strip-dots">
       <div class="card-strip-dot active"></div>
       <div class="card-strip-dot"></div>
       <div class="card-strip-dot"></div>
       <div class="card-strip-dot"></div>
       <div class="card-strip-dot"></div>
+    </div>
+    <!-- Desktop card grid: shown via CSS media query, hidden on mobile -->
+    <div class="card-grid-desktop">
+      <!-- Hero: Mark Twain -->
+      <div class="card-grid-hero">
+        <div class="card-grid-item">
+          <img src="./card-mark-twain.jpg" alt="Mark Twain personality card" loading="lazy" />
+          <div class="card-grid-caption">Figure</div>
+        </div>
+      </div>
+      <!-- 2x2 grid -->
+      <div class="card-grid-four">
+        <div class="card-grid-item">
+          <img src="./card-bathtub-gin.jpg" alt="Bathtub Gin cocktail card" loading="lazy" />
+          <div class="card-grid-caption">Cocktail</div>
+        </div>
+        <div class="card-grid-item">
+          <img src="./card-jfk.jpg" alt="New York city card" loading="lazy" />
+          <div class="card-grid-caption">City</div>
+        </div>
+        <div class="card-grid-item">
+          <img src="./card-foxglove.jpg" alt="Foxglove flower card" loading="lazy" />
+          <div class="card-grid-caption">Flower</div>
+        </div>
+        <div class="card-grid-item">
+          <img src="./card-question-mark.jpg" alt="Question Mark punctuation card" loading="lazy" />
+          <div class="card-grid-caption">Punctuation</div>
+        </div>
+      </div>
     </div>
     <div class="card-strip-footer">
       12 attributes. 128 figures. One cat.
@@ -772,6 +844,4 @@
   </script>
 
 </body>
-</html>
-
 </html>
